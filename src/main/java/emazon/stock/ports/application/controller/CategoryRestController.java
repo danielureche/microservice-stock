@@ -5,6 +5,7 @@ import emazon.stock.domain.model.Category;
 import emazon.stock.domain.ports.input.ICategoryServicePort;
 import emazon.stock.ports.application.dto.CategoryRequest;
 import emazon.stock.ports.application.mapper.ICategoryRequestMapper;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class CategoryRestController {
     private final ICategoryRequestMapper categoryRequestMapper;
 
     @PostMapping
-    public ResponseEntity<Void> createCategory(@RequestBody CategoryRequest categoryRequest){
+    public ResponseEntity<Void> createCategory(@Valid @RequestBody CategoryRequest categoryRequest){
         categoryServicePort.createCategory(categoryRequestMapper.toCategory(categoryRequest));
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
