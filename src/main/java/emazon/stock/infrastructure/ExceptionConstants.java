@@ -1,4 +1,4 @@
-package emazon.stock.infrastructure.exceptionhandler;
+package emazon.stock.infrastructure;
 
 public class ExceptionConstants {
     public static final String CATEGORY_NAME_REQUIRED = "Category name is required.";
