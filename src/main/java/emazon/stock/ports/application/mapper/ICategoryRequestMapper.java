@@ -15,5 +15,4 @@ public interface ICategoryRequestMapper {
     @Mapping(target = "name", source = "name")
     @Mapping(target = "description", source = "description")
     Category toCategory(CategoryRequest categoryRequest);
-
 }

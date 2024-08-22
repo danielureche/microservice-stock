@@ -2,7 +2,6 @@ package emazon.stock.ports.persistence.adapter;
 
 import emazon.stock.domain.model.Category;
 import emazon.stock.domain.ports.output.ICategoryPersistencePort;
-import emazon.stock.ports.application.mapper.ICategoryRequestMapper;
 import emazon.stock.ports.persistence.mapper.ICategoryEntityMapper;
 import emazon.stock.ports.persistence.repository.ICategoryRepository;
 import lombok.RequiredArgsConstructor;
