@@ -1,17 +1,10 @@
 package emazon.stock.ports.persistence.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Entity
-@Table(name = "category")
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
+@Entity(name = "category")
+@Data
 public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
