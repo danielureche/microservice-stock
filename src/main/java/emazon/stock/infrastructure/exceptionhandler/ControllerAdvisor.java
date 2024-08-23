@@ -13,6 +13,7 @@ import java.util.Map;
 
 @ControllerAdvice
 public class ControllerAdvisor {
+
     // Manejo de la excepción MethodArgumentNotValidException
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {

@@ -3,7 +3,6 @@ package emazon.stock.domain.model.usecase;
 import emazon.stock.domain.model.Category;
 import emazon.stock.domain.ports.input.ICategoryServicePort;
 import emazon.stock.domain.ports.output.ICategoryPersistencePort;
-import emazon.stock.infrastructure.ExceptionConstants;
 import emazon.stock.infrastructure.exception.CategoryAlreadyExistsException;
 
 import java.util.Optional;
