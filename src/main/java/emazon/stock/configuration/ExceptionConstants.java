@@ -7,4 +7,6 @@ public class ExceptionConstants {
     public static final String CATEGORY_DESCRIPTION_LENGTH = "Category description must be less than or equal to 90 characters.";
     public static final String CATEGORY_ALREADY_EXISTS = "Category already exists.";
 
+    public ExceptionConstants() {
+    }
 }
