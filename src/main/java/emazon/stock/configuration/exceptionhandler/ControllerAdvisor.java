@@ -1,6 +1,7 @@
 package emazon.stock.configuration.exceptionhandler;
 
 import emazon.stock.configuration.exception.CategoryAlreadyExistsException;
+import emazon.stock.configuration.exception.InvalidPageIndexException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -33,5 +34,10 @@ public class ControllerAdvisor {
     @ExceptionHandler(CategoryAlreadyExistsException.class)
     public ResponseEntity<String> handleCategoryAlreadyExistsException(CategoryAlreadyExistsException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(InvalidPageIndexException.class)
+    public ResponseEntity<String> handleInvalidPageIndexException(InvalidPageIndexException ex) {
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 }
