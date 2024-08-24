@@ -13,7 +13,7 @@ import java.util.List;
         unmappedSourcePolicy = ReportingPolicy.IGNORE
 )
 public interface ICategoryEntityMapper {
-    @Mapping(target = "id", ignore = true)
+    //@Mapping(target = "id", ignore = true)
     CategoryEntity toEntity(Category category);
 
     Category toModel(CategoryEntity categoryEntity);
