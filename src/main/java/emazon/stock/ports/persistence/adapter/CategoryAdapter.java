@@ -1,5 +1,6 @@
 package emazon.stock.ports.persistence.adapter;
 
+import emazon.stock.configuration.exception.InvalidPageIndexException;
 import emazon.stock.domain.model.Category;
 import emazon.stock.domain.model.Pagination;
 import emazon.stock.domain.ports.output.ICategoryPersistencePort;

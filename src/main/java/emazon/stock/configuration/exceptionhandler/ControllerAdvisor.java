@@ -38,6 +38,6 @@ public class ControllerAdvisor {
 
     @ExceptionHandler(InvalidPageIndexException.class)
     public ResponseEntity<String> handleInvalidPageIndexException(InvalidPageIndexException ex) {
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

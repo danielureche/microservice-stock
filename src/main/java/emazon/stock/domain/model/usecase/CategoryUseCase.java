@@ -1,5 +1,6 @@
 package emazon.stock.domain.model.usecase;
 
+import emazon.stock.configuration.exception.InvalidPageIndexException;
 import emazon.stock.domain.model.Category;
 import emazon.stock.domain.model.Pagination;
 import emazon.stock.domain.ports.input.ICategoryServicePort;
@@ -26,6 +27,10 @@ public class CategoryUseCase implements ICategoryServicePort {
 
     @Override
     public Pagination<Category> listCategories(PaginationUtil paginationUtil) {
+        if (paginationUtil.getPageNumber() < 0 || paginationUtil.getPageSize() < 0) {
+            throw new InvalidPageIndexException("Page index is out of range ");
+        }
+
         return categoryPersistencePort.listCategories(paginationUtil);
     }
 }
