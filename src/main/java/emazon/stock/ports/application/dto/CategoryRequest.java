@@ -1,6 +1,6 @@
 package emazon.stock.ports.application.dto;
 
-import emazon.stock.infrastructure.ExceptionConstants;
+import emazon.stock.configuration.ExceptionConstants;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;

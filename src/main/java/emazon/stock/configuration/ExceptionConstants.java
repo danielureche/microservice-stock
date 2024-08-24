@@ -1,4 +1,4 @@
-package emazon.stock.infrastructure;
+package emazon.stock.configuration;
 
 public class ExceptionConstants {
     public static final String CATEGORY_NAME_REQUIRED = "Category name is required.";

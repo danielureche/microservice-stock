@@ -2,7 +2,7 @@ package emazon.stock.domain.model.usecase;
 
 import emazon.stock.domain.model.Category;
 import emazon.stock.domain.ports.output.ICategoryPersistencePort;
-import emazon.stock.infrastructure.exception.CategoryAlreadyExistsException;
+import emazon.stock.configuration.exception.CategoryAlreadyExistsException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

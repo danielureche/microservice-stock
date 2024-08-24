@@ -1,6 +1,6 @@
-package emazon.stock.infrastructure.exception;
+package emazon.stock.configuration.exception;
 
-import emazon.stock.infrastructure.ExceptionConstants;
+import emazon.stock.configuration.ExceptionConstants;
 
 public class CategoryAlreadyExistsException extends RuntimeException{
     public CategoryAlreadyExistsException() {

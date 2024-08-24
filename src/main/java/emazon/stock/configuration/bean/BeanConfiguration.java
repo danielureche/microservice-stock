@@ -1,4 +1,4 @@
-package emazon.stock.infrastructure.bean;
+package emazon.stock.configuration.bean;
 
 import emazon.stock.domain.model.usecase.CategoryUseCase;
 import emazon.stock.domain.ports.input.ICategoryServicePort;

@@ -9,7 +9,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.fasterxml.jackson.databind.ObjectMapper;
 import emazon.stock.domain.model.Category;
 import emazon.stock.domain.ports.input.ICategoryServicePort;
-import emazon.stock.infrastructure.ExceptionConstants;
 import emazon.stock.ports.application.dto.CategoryRequest;
 import emazon.stock.ports.application.mapper.ICategoryRequestMapper;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,6 @@
-package emazon.stock.infrastructure.exceptionhandler;
+package emazon.stock.configuration.exceptionhandler;
 
-import emazon.stock.infrastructure.exception.CategoryAlreadyExistsException;
+import emazon.stock.configuration.exception.CategoryAlreadyExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
