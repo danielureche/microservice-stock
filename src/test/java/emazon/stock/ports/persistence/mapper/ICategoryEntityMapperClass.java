@@ -1,8 +1,9 @@
-package emazon.stock.ports.persistence.entity;
+package emazon.stock.ports.persistence.mapper;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import emazon.stock.domain.model.Category;
+import emazon.stock.ports.persistence.entity.CategoryEntity;
 import emazon.stock.ports.persistence.mapper.ICategoryEntityMapper;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
