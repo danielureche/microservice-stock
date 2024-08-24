@@ -4,11 +4,8 @@ import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.License;
-
 import io.swagger.v3.oas.annotations.servers.Server;
-import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.security.SecurityRequirement;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,8 +16,8 @@ import org.springframework.context.annotation.Configuration;
                 version = "1.0",
                 description = "This API provides stock management capabilities for the Emazon e-commerce platform.",
                 contact = @Contact(
-                        name = "Marlon Rivera",
-                        email = "riveramarlon33@gmail.com",
+                        name = "Daniel Ureche",
+                        email = "bryan.danielureche@gmail.com",
                         url = "https://github.com/danielureche"
                 ),
                 license = @License(
