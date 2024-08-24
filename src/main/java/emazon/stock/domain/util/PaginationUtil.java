@@ -9,22 +9,22 @@ public class PaginationUtil {
     public PaginationUtil() {
     }
 
-    public PaginationUtil(int pageNumber, int pageSize, boolean ascending, String nameFilter) {
-        this.pageNumber = pageNumber;
+    public PaginationUtil(int pageSize, int pageNumber, String nameFilter, boolean ascending) {
         this.pageSize = pageSize;
-        this.ascending = ascending;
+        this.pageNumber = pageNumber;
         this.nameFilter = nameFilter;
+        this.ascending = ascending;
     }
 
-    public Integer getPageNumber() {
+    public int getPageNumber() {
         return pageNumber;
     }
 
-    public void setPageNumber(Integer pageNumber) {
+    public void setPageNumber(int pageNumber) {
         this.pageNumber = pageNumber;
     }
 
-    public Integer getPageSize() {
+    public int getPageSize() {
         return pageSize;
     }
 
@@ -32,7 +32,7 @@ public class PaginationUtil {
         this.pageSize = pageSize;
     }
 
-    public Boolean isAscending() {
+    public boolean isAscending() {
         return ascending;
     }
 

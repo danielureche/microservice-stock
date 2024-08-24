@@ -14,14 +14,8 @@ import java.util.List;
 )
 public interface ICategoryEntityMapper {
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "name", source = "name")
-    @Mapping(target = "description", source = "description")
     CategoryEntity toEntity(Category category);
 
-    @Mapping(target = "id", source = "id")
-    @Mapping(target = "name", source = "name")
-    @Mapping(target = "description", source = "description")
     Category toModel(CategoryEntity categoryEntity);
-
     List<Category> toCategoryList(List<CategoryEntity> categoryEntityList);
 }

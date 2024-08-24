@@ -47,7 +47,7 @@ public class Pagination<T> {
         this.ascending = ascending;
     }
 
-    public boolean getEmpty() {
+    public boolean isEmpty() {
         return empty;
     }
 
