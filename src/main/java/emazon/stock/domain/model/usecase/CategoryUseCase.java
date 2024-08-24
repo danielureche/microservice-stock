@@ -1,9 +1,11 @@
 package emazon.stock.domain.model.usecase;
 
 import emazon.stock.domain.model.Category;
+import emazon.stock.domain.model.Pagination;
 import emazon.stock.domain.ports.input.ICategoryServicePort;
 import emazon.stock.domain.ports.output.ICategoryPersistencePort;
 import emazon.stock.configuration.exception.CategoryAlreadyExistsException;
+import emazon.stock.domain.util.PaginationUtil;
 
 import java.util.Optional;
 
@@ -20,5 +22,10 @@ public class CategoryUseCase implements ICategoryServicePort {
             throw new CategoryAlreadyExistsException();
         }
         categoryPersistencePort.createCategory(category);
+    }
+
+    @Override
+    public Pagination<Category> listCategories(PaginationUtil paginationUtil) {
+        return categoryPersistencePort.listCategories(paginationUtil);
     }
 }
