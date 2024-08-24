@@ -7,6 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ICategoryRepository extends JpaRepository<CategoryEntity, Long> {
-    @Query("SELECT c FROM category c WHERE c.name = :name")
     CategoryEntity findByName(String name);
 }

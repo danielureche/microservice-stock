@@ -36,7 +36,7 @@ public class CategoryRestController {
     public ResponseEntity<Pagination<CategoryResponse>> listCategories(
             @RequestParam(defaultValue = "1", required = false) int page,
             @RequestParam(defaultValue = "1", required = false) int size,
-            @RequestParam(defaultValue = "categoryName",required = false) String nameFilter,
+            @RequestParam(defaultValue = "categoryName", required = false) String nameFilter,
             @RequestParam(defaultValue = "true",required = false) boolean isAscending
     ) {
         Pagination<Category> pagination = categoryServicePort.listCategories(new PaginationUtil(size, page, isAscending, nameFilter));
