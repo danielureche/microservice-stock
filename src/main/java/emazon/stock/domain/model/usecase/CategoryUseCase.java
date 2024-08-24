@@ -30,7 +30,6 @@ public class CategoryUseCase implements ICategoryServicePort {
         if (paginationUtil.getPageNumber() < 0 || paginationUtil.getPageSize() < 0) {
             throw new InvalidPageIndexException("Page index is out of range ");
         }
-
         return categoryPersistencePort.listCategories(paginationUtil);
     }
 }
