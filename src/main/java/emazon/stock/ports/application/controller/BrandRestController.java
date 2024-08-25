@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("brands")
+@RequestMapping("/brands")
 public class BrandRestController {
 
     private final IBrandRequestMapper brandRequestMapper;
     private final IBrandServicePort brandServicePort;
 
     @PostMapping
-    public ResponseEntity<Void> createCategory(@RequestBody BrandRequest brandRequest){
+    public ResponseEntity<Void> createBrand(@RequestBody BrandRequest brandRequest){
         brandServicePort.createBrand(brandRequestMapper.toBrand(brandRequest));
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
