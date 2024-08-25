@@ -39,7 +39,7 @@ public class CategoryAdapter implements ICategoryPersistencePort {
     @Override
     public Pagination<Category> listCategories(PaginationUtil paginationUtil) {
         Sort.Direction sortDirection = paginationUtil.isAscending() ? Sort.Direction.ASC : Sort.Direction.DESC;
-        PageRequest pageRequest = PageRequest.of( paginationUtil.getPageSize(), paginationUtil.getPageNumber(), Sort.by(sortDirection, paginationUtil.getNameFilter()));
+        PageRequest pageRequest = PageRequest.of( paginationUtil.getPageNumber(), paginationUtil.getPageSize(), Sort.by(sortDirection, paginationUtil.getNameFilter()));
         Page<CategoryEntity> categoryPage = categoryRepository.findAll(pageRequest);
         List<Category> categories = categoryEntityMapper.toCategoryList(categoryPage.getContent());
 
