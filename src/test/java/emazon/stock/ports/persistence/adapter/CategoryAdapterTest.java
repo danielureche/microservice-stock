@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import emazon.stock.domain.model.Category;
+import emazon.stock.domain.model.Pagination;
+import emazon.stock.domain.util.PaginationUtil;
 import emazon.stock.ports.persistence.entity.CategoryEntity;
 import emazon.stock.ports.persistence.mapper.ICategoryEntityMapper;
 import emazon.stock.ports.persistence.repository.ICategoryRepository;
@@ -15,7 +17,12 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 class CategoryAdapterTest {
@@ -24,6 +31,9 @@ class CategoryAdapterTest {
 
     @Mock
     private ICategoryEntityMapper categoryEntityMapper;
+
+    @Mock
+    private Page<CategoryEntity> categoryPage;
 
     @InjectMocks
     private CategoryAdapter categoryAdapter;
@@ -80,6 +90,78 @@ class CategoryAdapterTest {
 
         // Assert
         assertTrue(foundCategory.isEmpty());
+    }
+
+    @Test
+    void listCategories_whenAscending() {
+        // Arrange
+        PaginationUtil paginationUtil = new PaginationUtil();
+        paginationUtil.setPageNumber(0);
+        paginationUtil.setPageSize(10);
+        paginationUtil.setAscending(true);
+        paginationUtil.setNameFilter("name");
+
+        Sort sort = Sort.by(Sort.Direction.ASC, "name");
+        PageRequest pageRequest = PageRequest.of(0, 10, sort);
+
+        List<CategoryEntity> categoryEntities = Collections.emptyList();
+        List<Category> categories = Collections.emptyList();
+
+        when(categoryRepository.findAll(pageRequest)).thenReturn(categoryPage);
+        when(categoryPage.getContent()).thenReturn(categoryEntities);
+        when(categoryPage.getTotalPages()).thenReturn(1);
+        when(categoryPage.getTotalElements()).thenReturn(10L);
+        when(categoryEntityMapper.toCategoryList(categoryEntities)).thenReturn(categories);
+
+        // Act
+        Pagination<Category> result = categoryAdapter.listCategories(paginationUtil);
+
+        // Assert
+        assertEquals(1, result.getTotalPages());
+        assertEquals(10L, result.getTotalElements());
+        assertEquals(categories, result.getContent());
+
+        verify(categoryRepository).findAll(pageRequest);
+        verify(categoryPage).getContent();
+        verify(categoryPage).getTotalPages();
+        verify(categoryPage).getTotalElements();
+        verify(categoryEntityMapper).toCategoryList(categoryEntities);
+    }
+
+    @Test
+    void listCategories_whenDescending() {
+        // Arrange
+        PaginationUtil paginationUtil = new PaginationUtil();
+        paginationUtil.setPageNumber(0);
+        paginationUtil.setPageSize(10);
+        paginationUtil.setAscending(false);
+        paginationUtil.setNameFilter("name");
+
+        Sort sort = Sort.by(Sort.Direction.DESC, "name");
+        PageRequest pageRequest = PageRequest.of(0, 10, sort);
+
+        List<CategoryEntity> categoryEntities = Collections.emptyList();
+        List<Category> categories = Collections.emptyList();
+
+        when(categoryRepository.findAll(pageRequest)).thenReturn(categoryPage);
+        when(categoryPage.getContent()).thenReturn(categoryEntities);
+        when(categoryPage.getTotalPages()).thenReturn(1);
+        when(categoryPage.getTotalElements()).thenReturn(10L);
+        when(categoryEntityMapper.toCategoryList(categoryEntities)).thenReturn(categories);
+
+        // Act
+        Pagination<Category> result = categoryAdapter.listCategories(paginationUtil);
+
+        // Assert
+        assertEquals(1, result.getTotalPages());
+        assertEquals(10L, result.getTotalElements());
+        assertEquals(categories, result.getContent());
+
+        verify(categoryRepository).findAll(pageRequest);
+        verify(categoryPage).getContent();
+        verify(categoryPage).getTotalPages();
+        verify(categoryPage).getTotalElements();
+        verify(categoryEntityMapper).toCategoryList(categoryEntities);
     }
 
 }
