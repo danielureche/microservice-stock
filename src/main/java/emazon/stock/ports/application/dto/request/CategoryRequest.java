@@ -1,4 +1,4 @@
-package emazon.stock.ports.application.dto;
+package emazon.stock.ports.application.dto.request;
 
 import emazon.stock.configuration.ExceptionConstants;
 import io.swagger.v3.oas.annotations.media.Schema;

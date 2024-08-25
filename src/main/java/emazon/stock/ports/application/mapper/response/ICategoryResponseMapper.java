@@ -1,7 +1,7 @@
-package emazon.stock.ports.application.mapper;
+package emazon.stock.ports.application.mapper.response;
 
 import emazon.stock.domain.model.Category;
-import emazon.stock.ports.application.dto.CategoryResponse;
+import emazon.stock.ports.application.dto.response.CategoryResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
