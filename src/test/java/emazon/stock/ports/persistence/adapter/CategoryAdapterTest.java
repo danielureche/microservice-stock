@@ -18,7 +18,7 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.Optional;
 
-public class CategoryAdapterTest {
+class CategoryAdapterTest {
     @Mock
     private ICategoryRepository categoryRepository;
 
@@ -81,4 +81,5 @@ public class CategoryAdapterTest {
         // Assert
         assertTrue(foundCategory.isEmpty());
     }
+
 }

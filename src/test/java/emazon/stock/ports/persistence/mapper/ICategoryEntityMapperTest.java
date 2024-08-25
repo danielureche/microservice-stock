@@ -4,10 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import emazon.stock.domain.model.Category;
 import emazon.stock.ports.persistence.entity.CategoryEntity;
-import emazon.stock.ports.persistence.mapper.ICategoryEntityMapper;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
-public class ICategoryEntityMapperClass {
+class ICategoryEntityMapperTest {
     private final ICategoryEntityMapper mapper = Mappers.getMapper(ICategoryEntityMapper.class);
 
     @Test

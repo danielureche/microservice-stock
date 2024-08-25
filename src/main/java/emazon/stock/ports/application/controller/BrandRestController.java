@@ -3,6 +3,7 @@ package emazon.stock.ports.application.controller;
 import emazon.stock.domain.ports.input.IBrandServicePort;
 import emazon.stock.ports.application.dto.request.BrandRequest;
 import emazon.stock.ports.application.mapper.request.IBrandRequestMapper;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class BrandRestController {
     private final IBrandServicePort brandServicePort;
 
     @PostMapping
-    public ResponseEntity<Void> createBrand(@RequestBody BrandRequest brandRequest){
+    public ResponseEntity<Void> createBrand(@Valid @RequestBody BrandRequest brandRequest){
         brandServicePort.createBrand(brandRequestMapper.toBrand(brandRequest));
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
