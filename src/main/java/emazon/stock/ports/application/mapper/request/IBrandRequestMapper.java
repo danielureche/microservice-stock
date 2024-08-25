@@ -13,7 +13,5 @@ import org.mapstruct.ReportingPolicy;
 )
 public interface IBrandRequestMapper {
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "name", source = "name")
-    @Mapping(target = "description", source = "description")
     Brand toBrand(BrandRequest brandRequest);
 }
