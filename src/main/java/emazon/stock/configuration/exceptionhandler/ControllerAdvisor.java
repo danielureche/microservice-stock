@@ -1,5 +1,6 @@
 package emazon.stock.configuration.exceptionhandler;
 
+import emazon.stock.configuration.exception.BrandAlreadyExistsException;
 import emazon.stock.configuration.exception.CategoryAlreadyExistsException;
 import emazon.stock.configuration.exception.InvalidPageIndexException;
 import org.springframework.http.HttpStatus;
@@ -40,4 +41,10 @@ public class ControllerAdvisor {
     public ResponseEntity<String> handleInvalidPageIndexException(InvalidPageIndexException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(BrandAlreadyExistsException.class)
+    public ResponseEntity<String> handleBrandAlreadyExistsException(BrandAlreadyExistsException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
+    }
+
 }
