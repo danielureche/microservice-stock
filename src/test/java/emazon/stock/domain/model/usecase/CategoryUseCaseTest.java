@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-public class CategoryUseCaseTest {
+class CategoryUseCaseTest {
     @Mock
     private ICategoryPersistencePort categoryPersistencePort;
 
@@ -81,7 +81,7 @@ public class CategoryUseCaseTest {
                 "Expected listCategories() to throw, but it didn't"
         );
 
-        assertEquals("Page index is out of range ", thrown.getMessage());
+        assertEquals("Page index is out of range.", thrown.getMessage());
     }
 
     @Test
@@ -96,6 +96,6 @@ public class CategoryUseCaseTest {
                 "Expected listCategories() to throw, but it didn't"
         );
 
-        assertEquals("Page index is out of range ", thrown.getMessage());
+        assertEquals("Page index is out of range.", thrown.getMessage());
     }
 }

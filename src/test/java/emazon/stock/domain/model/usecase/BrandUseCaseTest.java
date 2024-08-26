@@ -1,8 +1,8 @@
 package emazon.stock.domain.model.usecase;
 
 import emazon.stock.configuration.exception.BrandAlreadyExistsException;
+import emazon.stock.configuration.exception.InvalidPageIndexException;
 import emazon.stock.domain.model.Brand;
-import emazon.stock.domain.model.Category;
 import emazon.stock.domain.model.Pagination;
 import emazon.stock.domain.ports.output.IBrandPersistencePort;
 import emazon.stock.domain.util.PaginationUtil;
@@ -33,7 +33,7 @@ class BrandUseCaseTest {
     }
 
     @Test
-    void createCategoryWhenBrandDoesNotExist() {
+    void createBrandWhenBrandDoesNotExist() {
         // Arrange
         Brand brand = new Brand(1L, "TestBrand", "Description");
         when(brandPersistencePort.findByName(any(String.class))).thenReturn(Optional.empty());
@@ -44,7 +44,7 @@ class BrandUseCaseTest {
     }
 
     @Test
-    void throwsCategoryAlreadyExistsException() {
+    void throwsBrandAlreadyExistsException() {
         // Arrange
         Brand brand = new Brand(1L, "TestBrand", "Description");
         when(brandPersistencePort.findByName(any(String.class))).thenReturn(Optional.of(brand));
@@ -54,4 +54,48 @@ class BrandUseCaseTest {
         verify(brandPersistencePort, never()).createBrand(any(Brand.class));
     }
 
+    @Test
+    void testListBrands() {
+        // Arrange
+        PaginationUtil paginationUtil = new PaginationUtil(10, 1, "name", true);
+        Pagination<Brand> expectedPagination = mock(Pagination.class);
+        when(brandPersistencePort.listBrands(paginationUtil)).thenReturn(expectedPagination);
+
+        // Act
+        Pagination<Brand> result = brandUseCase.listBrands(paginationUtil);
+
+        // Assert
+        assertEquals(expectedPagination, result);
+        verify(brandPersistencePort).listBrands(paginationUtil);
+    }
+
+    @Test
+    void testListBrandsWithInvalidPageNumber() {
+        // Arrange
+        PaginationUtil paginationUtil = new PaginationUtil(10, -1, "name", true);
+
+        // Act & Assert
+        InvalidPageIndexException thrown = assertThrows(
+                InvalidPageIndexException.class,
+                () -> brandUseCase.listBrands(paginationUtil),
+                "Expected listBrands() to throw, but it didn't"
+        );
+
+        assertEquals("Page index is out of range.", thrown.getMessage());
+    }
+
+    @Test
+    void testListBrandsWithInvalidPageSize() {
+        // Arrange
+        PaginationUtil paginationUtil = new PaginationUtil(-1, 1, "name", true);
+
+        // Act & Assert
+        InvalidPageIndexException thrown = assertThrows(
+                InvalidPageIndexException.class,
+                () -> brandUseCase.listBrands(paginationUtil),
+                "Expected listBrands() to throw, but it didn't"
+        );
+
+        assertEquals("Page index is out of range.", thrown.getMessage());
+    }
 }

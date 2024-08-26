@@ -28,7 +28,7 @@ public class CategoryUseCase implements ICategoryServicePort {
     @Override
     public Pagination<Category> listCategories(PaginationUtil paginationUtil) {
         if (paginationUtil.getPageNumber() < 0 || paginationUtil.getPageSize() < 0) {
-            throw new InvalidPageIndexException("Page index is out of range ");
+            throw new InvalidPageIndexException("Page index is out of range.");
         }
         return categoryPersistencePort.listCategories(paginationUtil);
     }
