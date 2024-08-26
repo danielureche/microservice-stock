@@ -48,8 +48,6 @@ class CategoryRestControllerTest {
     @MockBean
     private ICategoryResponseMapper categoryResponseMapper;
 
-    @InjectMocks
-    private CategoryRestController categoryController;
 
     @BeforeEach
     public void setUp() {
