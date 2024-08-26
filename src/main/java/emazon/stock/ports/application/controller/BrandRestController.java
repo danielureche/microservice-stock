@@ -9,6 +9,7 @@ import emazon.stock.ports.application.dto.response.BrandResponse;
 import emazon.stock.ports.application.mapper.request.IBrandRequestMapper;
 import emazon.stock.ports.application.mapper.response.IBrandResponseMapper;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -44,6 +45,21 @@ public class BrandRestController {
         brandServicePort.createBrand(brandRequestMapper.toBrand(brandRequest));
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    @Operation(
+            summary = "Get all brands paginated",
+            description = "Retrieves a paginated list of brands based on query parameters.",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "List of brands retrieved successfully"),
+                    @ApiResponse(responseCode = "400", description = "Invalid query parameters", content = @Content)
+            },
+            parameters = {
+                    @Parameter(name = "page", description = "Page number for pagination", example = "1"),
+                    @Parameter(name = "size", description = "Number of categories per page", example = "10"),
+                    @Parameter(name = "nameFilter", description = "Filter by category name", example = "name"),
+                    @Parameter(name = "isAscending", description = "Sort order, ascending or descending", example = "true")
+            }
+    )
     @GetMapping
     public ResponseEntity<Pagination<BrandResponse>> listBrands(
             @RequestParam(defaultValue = "1", required = false) int page,
