@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Schema(description = "Category response object")
+@Schema(description = "Brand response object")
 public class BrandResponse {
 
     @Schema(description = "Brand ID", example = "1")

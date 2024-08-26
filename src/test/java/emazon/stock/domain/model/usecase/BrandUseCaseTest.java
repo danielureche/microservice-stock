@@ -2,7 +2,10 @@ package emazon.stock.domain.model.usecase;
 
 import emazon.stock.configuration.exception.BrandAlreadyExistsException;
 import emazon.stock.domain.model.Brand;
+import emazon.stock.domain.model.Category;
+import emazon.stock.domain.model.Pagination;
 import emazon.stock.domain.ports.output.IBrandPersistencePort;
+import emazon.stock.domain.util.PaginationUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -11,12 +14,13 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.never;
 
-public class BrandUseCaseTest {
+class BrandUseCaseTest {
     @Mock
     private IBrandPersistencePort brandPersistencePort;
 
@@ -49,4 +53,5 @@ public class BrandUseCaseTest {
         assertThrows(BrandAlreadyExistsException.class, () -> brandUseCase.createBrand(brand));
         verify(brandPersistencePort, never()).createBrand(any(Brand.class));
     }
+
 }
