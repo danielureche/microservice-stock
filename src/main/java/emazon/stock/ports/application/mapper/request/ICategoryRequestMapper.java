@@ -12,5 +12,7 @@ import org.mapstruct.Mapping;
 )
 public interface ICategoryRequestMapper {
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "name", source = "name")
+    @Mapping(target = "description", source = "description")
     Category toCategory(CategoryRequest categoryRequest);
 }
