@@ -3,7 +3,7 @@ package emazon.stock.domain.model;
 import java.util.List;
 
 public class Pagination<T> {
-    private final List<T> content;
+    private List<T> content;
     private int totalPages;
     private Long totalElements;
     private int currentPage;

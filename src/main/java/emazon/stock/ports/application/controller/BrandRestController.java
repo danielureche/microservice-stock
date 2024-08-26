@@ -1,8 +1,13 @@
 package emazon.stock.ports.application.controller;
 
+import emazon.stock.domain.model.Brand;
+import emazon.stock.domain.model.Pagination;
 import emazon.stock.domain.ports.input.IBrandServicePort;
+import emazon.stock.domain.util.PaginationUtil;
 import emazon.stock.ports.application.dto.request.BrandRequest;
+import emazon.stock.ports.application.dto.response.BrandResponse;
 import emazon.stock.ports.application.mapper.request.IBrandRequestMapper;
+import emazon.stock.ports.application.mapper.response.IBrandResponseMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -12,10 +17,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -25,6 +29,7 @@ public class BrandRestController {
 
     private final IBrandRequestMapper brandRequestMapper;
     private final IBrandServicePort brandServicePort;
+    private final IBrandResponseMapper brandResponseMapper;
 
     @Operation(
             summary = "Create a new brand",
@@ -39,4 +44,25 @@ public class BrandRestController {
         brandServicePort.createBrand(brandRequestMapper.toBrand(brandRequest));
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    public ResponseEntity<Pagination<BrandResponse>> listBrands(
+            @RequestParam(defaultValue = "1", required = false) int page,
+            @RequestParam(defaultValue = "1", required = false) int size,
+            @RequestParam(defaultValue = "name", required = false) String nameFilter,
+            @RequestParam(defaultValue = "true",required = false) boolean isAscending
+    ) {
+        Pagination<Brand> pagination = brandServicePort.listBrands(new PaginationUtil(size, page, nameFilter, isAscending));
+        List<Brand> brands = pagination.getContent();
+
+        return ResponseEntity.ok(
+                new Pagination<>(
+                        pagination.isAscending(),
+                        pagination.getCurrentPage(),
+                        pagination.getTotalPages(),
+                        pagination.getTotalElements(),
+                        brandResponseMapper.toBrandResponses(brands)
+                )
+        );
+    }
+
 }
