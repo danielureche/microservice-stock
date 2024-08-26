@@ -38,6 +38,7 @@ public class BeanConfiguration {
     public IBrandPersistencePort brandPersistencePort(){
         return new BrandAdapter(brandRepository, brandEntityMapper);
     }
+
     @Bean
     public IBrandServicePort brandServicePort(){
         return new BrandUseCase(brandPersistencePort());

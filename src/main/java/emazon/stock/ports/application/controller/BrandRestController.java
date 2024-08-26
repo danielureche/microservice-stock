@@ -44,7 +44,7 @@ public class BrandRestController {
         brandServicePort.createBrand(brandRequestMapper.toBrand(brandRequest));
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-
+    @GetMapping
     public ResponseEntity<Pagination<BrandResponse>> listBrands(
             @RequestParam(defaultValue = "1", required = false) int page,
             @RequestParam(defaultValue = "1", required = false) int size,

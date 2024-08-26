@@ -1,7 +1,6 @@
 package emazon.stock.domain.ports.output;
 
 import emazon.stock.domain.model.Brand;
-import emazon.stock.domain.model.Category;
 import emazon.stock.domain.model.Pagination;
 import emazon.stock.domain.util.PaginationUtil;
 

@@ -6,10 +6,11 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface IBrandResponseMapper {
     @Mapping(target = "id", source = "id")
     @Mapping(target = "name", source = "name")
-    @Mapping(target = "description", source = "name")
+    @Mapping(target = "description", source = "description")
     List<BrandResponse> toBrandResponses(List<Brand> brands);
 }
