@@ -30,7 +30,7 @@ public class BrandUseCase implements IBrandServicePort {
     @Override
     public Pagination<Brand> listBrands(PaginationUtil paginationUtil) {
         if (paginationUtil.getPageNumber() < 0 || paginationUtil.getPageSize() < 0) {
-            throw new InvalidPageIndexException("Page index is out of range ");
+            throw new InvalidPageIndexException("Page index is out of range.");
         }
         return brandPersistencePort.listBrands(paginationUtil);
     }
