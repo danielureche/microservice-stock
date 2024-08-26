@@ -1,6 +1,8 @@
 package emazon.stock.ports.persistence.adapter;
 
 import emazon.stock.domain.model.Brand;
+import emazon.stock.domain.model.Pagination;
+import emazon.stock.domain.util.PaginationUtil;
 import emazon.stock.ports.persistence.entity.BrandEntity;
 import emazon.stock.ports.persistence.mapper.IBrandEntityMapper;
 import emazon.stock.ports.persistence.repository.IBrandRepository;
@@ -9,7 +11,12 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,6 +32,9 @@ class BrandAdapterTest {
 
     @Mock
     private IBrandEntityMapper brandEntityMapper;
+
+    @Mock
+    private Page<BrandEntity> brandPage;
 
     @InjectMocks
     private BrandAdapter brandAdapter;
@@ -81,5 +91,77 @@ class BrandAdapterTest {
 
         // Assert
         assertTrue(foundBrand.isEmpty());
+    }
+
+    @Test
+    void listBrands_whenAscending() {
+        // Arrange
+        PaginationUtil paginationUtil = new PaginationUtil();
+        paginationUtil.setPageNumber(0);
+        paginationUtil.setPageSize(10);
+        paginationUtil.setAscending(true);
+        paginationUtil.setNameFilter("name");
+
+        Sort sort = Sort.by(Sort.Direction.ASC, "name");
+        PageRequest pageRequest = PageRequest.of(0, 10, sort);
+
+        List<BrandEntity> brandEntities = Collections.emptyList();
+        List<Brand> brands = Collections.emptyList();
+
+        when(brandRepository.findAll(pageRequest)).thenReturn(brandPage);
+        when(brandPage.getContent()).thenReturn(brandEntities);
+        when(brandPage.getTotalPages()).thenReturn(1);
+        when(brandPage.getTotalElements()).thenReturn(10L);
+        when(brandEntityMapper.toBrandList(brandEntities)).thenReturn(brands);
+
+        // Act
+        Pagination<Brand> result = brandAdapter.listBrands(paginationUtil);
+
+        // Assert
+        assertEquals(1, result.getTotalPages());
+        assertEquals(10L, result.getTotalElements());
+        assertEquals(brands, result.getContent());
+
+        verify(brandRepository).findAll(pageRequest);
+        verify(brandPage).getContent();
+        verify(brandPage).getTotalPages();
+        verify(brandPage).getTotalElements();
+        verify(brandEntityMapper).toBrandList(brandEntities);
+    }
+
+    @Test
+    void listBrands_whenDescending() {
+        // Arrange
+        PaginationUtil paginationUtil = new PaginationUtil();
+        paginationUtil.setPageNumber(0);
+        paginationUtil.setPageSize(10);
+        paginationUtil.setAscending(false);
+        paginationUtil.setNameFilter("name");
+
+        Sort sort = Sort.by(Sort.Direction.DESC, "name");
+        PageRequest pageRequest = PageRequest.of(0, 10, sort);
+
+        List<BrandEntity> brandEntities = Collections.emptyList();
+        List<Brand> brands = Collections.emptyList();
+
+        when(brandRepository.findAll(pageRequest)).thenReturn(brandPage);
+        when(brandPage.getContent()).thenReturn(brandEntities);
+        when(brandPage.getTotalPages()).thenReturn(1);
+        when(brandPage.getTotalElements()).thenReturn(10L);
+        when(brandEntityMapper.toBrandList(brandEntities)).thenReturn(brands);
+
+        // Act
+        Pagination<Brand> result = brandAdapter.listBrands(paginationUtil);
+
+        // Assert
+        assertEquals(1, result.getTotalPages());
+        assertEquals(10L, result.getTotalElements());
+        assertEquals(brands, result.getContent());
+
+        verify(brandRepository).findAll(pageRequest);
+        verify(brandPage).getContent();
+        verify(brandPage).getTotalPages();
+        verify(brandPage).getTotalElements();
+        verify(brandEntityMapper).toBrandList(brandEntities);
     }
 }
