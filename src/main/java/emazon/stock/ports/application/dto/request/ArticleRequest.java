@@ -12,8 +12,8 @@ import java.util.List;
 public class ArticleRequest {
     private String name;
     private String description;
-    private int amountArticles;
-    private double price;
+    private Integer amountArticles;
+    private Double price;
     private Long brandId;
     private List<Long> categoriesIds;
 }

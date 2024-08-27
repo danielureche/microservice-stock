@@ -23,15 +23,15 @@ public class ArticleEntity {
     @Column(nullable = false, length = 120)
     private String description;
 
-    @Column(nullable = false, length = 50)
-    private int amountArticles;
+    @Column(name = "amount_articles", nullable = false)
+    private Integer amountArticles;
 
-    @Column(nullable = false, length = 50)
-    private double price;
+    @Column(nullable = false)
+    private Double price;
 
-    @ManyToOne
-    @JoinColumn(name = "idBrand")
-    private BrandEntity brand;
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "brand_id")
+    private BrandEntity brandId;
 
     @ManyToMany
     @JoinTable(
@@ -39,5 +39,5 @@ public class ArticleEntity {
             joinColumns = @JoinColumn(name = "idArticle"),
             inverseJoinColumns = @JoinColumn(name = "idCategory")
     )
-    private List<CategoryEntity> categories;
+    private List<CategoryEntity> categoriesIds;
 }
