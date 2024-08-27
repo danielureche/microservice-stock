@@ -24,7 +24,7 @@ public class ArticleEntity {
     private String description;
 
     @Column(name = "amount_articles", nullable = false)
-    private Integer amountArticles;
+    private int amountArticles;
 
     @Column(nullable = false)
     private Double price;
@@ -36,8 +36,16 @@ public class ArticleEntity {
     @ManyToMany
     @JoinTable(
             name = "category_article",
-            joinColumns = @JoinColumn(name = "idArticle"),
-            inverseJoinColumns = @JoinColumn(name = "idCategory")
+            joinColumns = @JoinColumn(name = "id_article"),
+            inverseJoinColumns = @JoinColumn(name = "id_category")
     )
     private List<CategoryEntity> categoriesIds;
+
+    public List<CategoryEntity> getCategoriesIds() {
+        return categoriesIds;
+    }
+
+    public void setCategoriesIds(List<CategoryEntity> categoriesIds) {
+        this.categoriesIds = categoriesIds;
+    }
 }

@@ -17,4 +17,8 @@ public class CategoryEntity {
     private String name;
     @Column(nullable = false, length = 90)
     private String description;
+
+    public CategoryEntity(Long id) {
+        this.id = id;
+    }
 }

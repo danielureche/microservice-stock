@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -19,5 +21,9 @@ public class BrandEntity {
     private String name;
     @Column(nullable = false, length = 120)
     private String description;
+
+    public BrandEntity(Long id) {
+        this.id = id;
+    }
 
 }

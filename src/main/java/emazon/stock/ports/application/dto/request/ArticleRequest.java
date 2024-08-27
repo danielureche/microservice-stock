@@ -12,7 +12,7 @@ import java.util.List;
 public class ArticleRequest {
     private String name;
     private String description;
-    private Integer amountArticles;
+    private int amountArticles;
     private Double price;
     private Long brandId;
     private List<Long> categoriesIds;

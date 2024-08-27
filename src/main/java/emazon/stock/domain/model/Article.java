@@ -6,12 +6,12 @@ public class Article {
     private Long id;
     private String name;
     private String description;
-    private Integer amountArticles;
+    private int amountArticles;
     private Double price;
     private Long brandId;
     private List<Long> categoriesIds;
 
-    public Article(Long id, String name, String description, Integer amountArticles,Double price, Long brandId, List<Long> categoriesIds) {
+    public Article(Long id, String name, String description, int amountArticles,Double price, Long brandId, List<Long> categoriesIds) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -45,11 +45,11 @@ public class Article {
         this.description = description;
     }
 
-    public Integer getAmountArticle() {
+    public int getAmountArticle() {
         return amountArticles;
     }
 
-    public void setAmountArticle(Integer amountArticle) {
+    public void setAmountArticle(int amountArticle) {
         this.amountArticles = amountArticle;
     }
 
