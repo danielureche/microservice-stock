@@ -55,4 +55,9 @@ public class BrandAdapter implements IBrandPersistencePort {
                 brands
         );
     }
+
+    @Override
+    public boolean existsBrand(Long brandId) {
+        return brandRepository.existsById(brandId);
+    }
 }

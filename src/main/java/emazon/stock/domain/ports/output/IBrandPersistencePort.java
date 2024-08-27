@@ -10,4 +10,5 @@ public interface IBrandPersistencePort {
     void createBrand(Brand brand);
     Optional<Brand> findByName(String name);
     Pagination<Brand> listBrands(PaginationUtil paginationUtil);
+    boolean existsBrand(Long brandId);
 }

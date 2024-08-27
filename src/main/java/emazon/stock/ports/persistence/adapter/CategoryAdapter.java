@@ -28,12 +28,7 @@ public class CategoryAdapter implements ICategoryPersistencePort {
 
     @Override
     public Optional<Category> findByName(String name) {
-        CategoryEntity categoryEntity = categoryRepository.findByName(name);
-        if (categoryEntity == null){
-            return Optional.empty();
-        }
-        Category category = categoryEntityMapper.toModel(categoryEntity);
-        return Optional.of(category);
+        return categoryRepository.findByName(name).map(categoryEntityMapper::toModel);
     }
 
     @Override
@@ -50,5 +45,10 @@ public class CategoryAdapter implements ICategoryPersistencePort {
                 categoryPage.getTotalElements(),
                 categories
         );
+    }
+
+    @Override
+    public boolean existsCategory(Long categoryId) {
+        return categoryRepository.existsById(categoryId);
     }
 }

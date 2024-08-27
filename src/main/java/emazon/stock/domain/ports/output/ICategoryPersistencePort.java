@@ -10,4 +10,5 @@ public interface ICategoryPersistencePort {
     void createCategory(Category category);
     Optional<Category> findByName(String name);
     Pagination<Category> listCategories(PaginationUtil paginationUtil);
+    boolean existsCategory(Long categoryId);
 }
