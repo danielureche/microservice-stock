@@ -1,10 +1,10 @@
 package emazon.stock.configuration.exception;
 
-import emazon.stock.configuration.ExceptionConstants;
+import emazon.stock.ports.application.utils.ArticleValidationConstants;
 
 public class BrandNotFoundException extends RuntimeException{
 
     public BrandNotFoundException(){
-        super(ExceptionConstants.BRAND_NOT_FOUND);
+        super(ArticleValidationConstants.BRAND_NOT_FOUND);
     }
 }

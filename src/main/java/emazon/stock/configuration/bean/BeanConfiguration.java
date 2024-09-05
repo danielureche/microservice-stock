@@ -30,6 +30,7 @@ public class BeanConfiguration {
     private final IBrandRepository brandRepository;
     private final IBrandEntityMapper brandEntityMapper;
     private final IArticleRepository articleRepository;
+    private final IArticleEntityMapper articleEntityMapper;
     //private final IArticleEntityMapper articleEntityMapper;
 
     @Bean
@@ -53,7 +54,7 @@ public class BeanConfiguration {
 
     @Bean
     public IArticlePersistencePort articlePersistencePort(){
-        return new ArticleAdapter(articleRepository);
+        return new ArticleAdapter(articleRepository, articleEntityMapper);
     }
 
     @Bean

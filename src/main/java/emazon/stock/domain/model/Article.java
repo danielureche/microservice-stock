@@ -45,12 +45,12 @@ public class Article {
         this.description = description;
     }
 
-    public int getAmountArticle() {
+    public int getAmountArticles() {
         return amountArticles;
     }
 
-    public void setAmountArticle(int amountArticle) {
-        this.amountArticles = amountArticle;
+    public void setAmountArticles(int amountArticles) {
+        this.amountArticles = amountArticles;
     }
 
     public Double getPrice() {

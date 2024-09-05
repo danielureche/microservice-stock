@@ -13,16 +13,6 @@ public class ExceptionConstants {
     public static final String BRAND_DESCRIPTION_LENGTH = "Brand description must be less than or equal to 120 characters.";
     public static final String BRAND_ALREADY_EXISTS = "Brand already exists.";
 
-    public static final String CATEGORY_NOT_FOUND = "Category not found.";
-    public static final String BRAND_NOT_FOUND = "Brand not found.";
-    public static final String DUPLICATE_CATEGORY = "Duplicate categories are not allowed.";
-
-    public static final String ARTICLE_NAME_REQUIRED = "Article name is required.";
-    public static final String ARTICLE_DESCRIPTION_REQUIRED = "Article description is required.";
-    public static final String ARTICLE_QUANTITY_REQUIRED = "Article quantity is required.";
-    public static final String ARTICLE_ALREADY_EXISTS = "Article already exists.";
-
-
     public ExceptionConstants() {
     }
 }

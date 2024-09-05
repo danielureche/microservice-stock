@@ -1,5 +1,7 @@
 package emazon.stock.domain.model.usecase;
 
+import emazon.stock.configuration.exception.BrandNotFoundException;
+import emazon.stock.configuration.exception.CategoryNotFoundException;
 import emazon.stock.domain.model.Article;
 import emazon.stock.domain.ports.input.IArticleServicePort;
 import emazon.stock.domain.ports.output.IArticlePersistencePort;
@@ -33,20 +35,17 @@ public class ArticleUseCase implements IArticleServicePort {
 
     public void validateCategories(List<Long> categoryIds){
         Set<Long> uniqueCategoryIds = new HashSet<>(categoryIds);
-        if (uniqueCategoryIds.size() != categoryIds.size()) {
-            throw new IllegalArgumentException("No se permiten categorías repetidas");
-        }
 
         for (Long categoryId : categoryIds) {
             if (!categoryPersistencePort.existsCategory(categoryId)) {
-                throw new IllegalArgumentException("La categoría con ID " + categoryId + " no existe");
+                throw new CategoryNotFoundException();
             }
         }
     }
 
     public void validateBrand(Long brandId) {
         if (!brandPersistencePort.existsBrand(brandId)) {
-            throw new IllegalArgumentException("La marca con ID " + brandId + " no existe");
+            throw new BrandNotFoundException();
         }
     }
 }
