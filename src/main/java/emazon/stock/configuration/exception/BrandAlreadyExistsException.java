@@ -1,9 +1,9 @@
 package emazon.stock.configuration.exception;
 
-import emazon.stock.configuration.ExceptionConstants;
+import emazon.stock.ports.application.utils.BrandValidationConstants;
 
 public class BrandAlreadyExistsException extends RuntimeException{
     public BrandAlreadyExistsException() {
-        super(ExceptionConstants.BRAND_ALREADY_EXISTS);
+        super(BrandValidationConstants.BRAND_ALREADY_EXISTS);
     }
 }
