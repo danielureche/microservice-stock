@@ -13,6 +13,9 @@ import java.util.List;
         unmappedSourcePolicy = ReportingPolicy.IGNORE
 )
 public interface ICategoryEntityMapper {
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "name", source = "name")
+    @Mapping(target = "description", source = "description")
     CategoryEntity toEntity(Category category);
     Category toModel(CategoryEntity categoryEntity);
     List<Category> toCategoryList(List<CategoryEntity> categoryEntityList);

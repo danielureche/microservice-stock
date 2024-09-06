@@ -68,7 +68,7 @@ class CategoryAdapterTest {
         categoryEntity.setName(categoryName);
         categoryEntity.setDescription("A description");
 
-        when(categoryRepository.findByName(eq(categoryName))).thenReturn(categoryEntity);
+        when(categoryRepository.findByName(eq(categoryName))).thenReturn(Optional.of(categoryEntity));
         when(categoryEntityMapper.toModel(categoryEntity)).thenReturn(new Category(null, categoryName, "A description"));
 
         // Act
@@ -83,7 +83,7 @@ class CategoryAdapterTest {
     void shouldReturnEmptyWhenFindByNameDoesNotExist() {
         // Arrange
         String categoryName = "Non-Existing Category";
-        when(categoryRepository.findByName(eq(categoryName))).thenReturn(null);
+        when(categoryRepository.findByName(eq(categoryName))).thenReturn(Optional.empty());
 
         // Act
         Optional<Category> foundCategory = categoryAdapter.findByName(categoryName);
@@ -164,4 +164,17 @@ class CategoryAdapterTest {
         verify(categoryEntityMapper).toCategoryList(categoryEntities);
     }
 
+    @Test
+    void testExistsCategoryById() {
+        // Arrange
+        Long categoryId = 1L;
+        when(categoryRepository.existsById(categoryId)).thenReturn(true);
+
+        // Act
+        boolean result = categoryAdapter.existsCategory(categoryId);
+
+        // Assert
+        assertTrue(result);
+        verify(categoryRepository).existsById(categoryId);
+    }
 }

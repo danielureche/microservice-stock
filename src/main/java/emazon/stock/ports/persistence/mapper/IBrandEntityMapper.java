@@ -13,6 +13,9 @@ import java.util.List;
         unmappedSourcePolicy = ReportingPolicy.IGNORE
 )
 public interface IBrandEntityMapper {
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "name", source = "name")
+    @Mapping(target = "description", source = "description")
     BrandEntity toEntity(Brand brand);
     Brand toModel(BrandEntity brandEntity);
     List<Brand> toBrandList(List<BrandEntity> brandEntityList);

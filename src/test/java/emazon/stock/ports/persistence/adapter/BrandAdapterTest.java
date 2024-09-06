@@ -164,4 +164,18 @@ class BrandAdapterTest {
         verify(brandPage).getTotalElements();
         verify(brandEntityMapper).toBrandList(brandEntities);
     }
+
+    @Test
+    void testExistsBrandById() {
+        // Arrange
+        Long brandId = 1L;
+        when(brandRepository.existsById(brandId)).thenReturn(true);
+
+        // Act
+        boolean result = brandAdapter.existsBrand(brandId);
+
+        // Assert
+        assertTrue(result);
+        verify(brandRepository).existsById(brandId);
+    }
 }

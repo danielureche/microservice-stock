@@ -11,7 +11,10 @@ public class Article {
     private Long brandId;
     private List<Long> categoriesIds;
 
-    public Article(Long id, String name, String description, int amountArticles,Double price, Long brandId, List<Long> categoriesIds) {
+    public Article() {
+    }
+
+    public Article(Long id, String name, String description, int amountArticles, Double price, Long brandId, List<Long> categoriesIds) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -73,7 +76,7 @@ public class Article {
         return categoriesIds;
     }
 
-    public void setIdCategories(List<Long> categoriesIds) {
+    public void setCategoriesIds(List<Long> categoriesIds) {
         this.categoriesIds = categoriesIds;
     }
 }
